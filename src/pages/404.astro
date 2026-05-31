@@ -1,0 +1,34 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 - Page Not Found | Dread Disc Guide" description="This page could not be found.">
+  <section class="max-w-3xl mx-auto px-4 py-20 text-center">
+    <div class="text-6xl mb-6">💿</div>
+    <h1 class="text-3xl font-extrabold mb-4 text-gray-100">This Disc Has Been Scratched</h1>
+    <p class="text-gray-400 mb-8 max-w-md mx-auto">
+      The page you're looking for doesn't exist. It may have been moved or the link is broken.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href="/"
+        class="px-6 py-3 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800 transition-colors"
+      >
+        🏠 Back to Home
+      </a>
+      <a
+        href="/differences-checklist/"
+        class="px-6 py-3 border border-red-700/50 text-red-400 font-semibold rounded-lg hover:bg-red-900/20 transition-colors"
+      >
+        🔍 Differences Checklist
+      </a>
+    </div>
+    <div class="mt-8">
+      <a href="/demo-walkthrough/" class="text-sm text-gray-500 hover:text-red-400 transition-colors">Demo Walkthrough</a>
+      <span class="mx-3 text-gray-700">•</span>
+      <a href="/faq/" class="text-sm text-gray-500 hover:text-red-400 transition-colors">FAQ</a>
+      <span class="mx-3 text-gray-700">•</span>
+      <a href="/survival-guide/" class="text-sm text-gray-500 hover:text-red-400 transition-colors">Survival Guide</a>
+    </div>
+  </section>
+</BaseLayout>

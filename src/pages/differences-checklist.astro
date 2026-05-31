@@ -1,0 +1,139 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import DifferencesChecklist from '@/components/DifferencesChecklist.tsx';
+import {
+  getGameConfig,
+  getDifferences,
+  generateBreadcrumbSchema,
+  generateSoftwareApplicationSchema,
+} from '@/lib/data';
+
+const config = getGameConfig();
+const differences = getDifferences();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Differences Checklist', url: '/differences-checklist/' },
+]);
+
+const softwareSchema = generateSoftwareApplicationSchema(
+  'Dread Disc Differences Checklist',
+  'Interactive checklist for tracking apartment differences in Dread Disc with room filtering and spoiler controls',
+  '/differences-checklist/'
+);
+
+const rooms = [...new Set(differences.map(d => d.room))].sort();
+const changeTypes = [...new Set(differences.map(d => d.changeType))];
+const demoVerified = differences.filter(d => d.verified === 'demo').length;
+const totalDiffs = differences.length;
+---
+
+<BaseLayout
+  title="Dread Disc Differences Checklist"
+  description="Interactive Dread Disc differences checklist. Filter by room and change type, track moved, missing, opened, damaged, and new objects."
+>
+  <JsonLd schema={[breadcrumbSchema, softwareSchema]} />
+
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-red-400 transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-300">Differences Checklist</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-100">
+      Dread Disc Differences Checklist
+    </h1>
+
+    <p class="text-gray-400 mb-4 leading-relaxed">
+      Use this interactive checklist while playing Dread Disc. Check off each difference as you find it.
+      Filter by room, change type, or spoiler level. Your progress is saved locally.
+    </p>
+
+    <!-- Quick Stats -->
+    <div class="flex flex-wrap gap-3 mb-6">
+      <span class="text-xs bg-gray-800 text-gray-400 px-3 py-1.5 rounded-full border border-gray-700/50">
+        {totalDiffs} known differences
+      </span>
+      <span class="text-xs bg-green-900/30 text-green-400 px-3 py-1.5 rounded-full border border-green-700/40">
+        ✓ {demoVerified} verified in demo
+      </span>
+      <span class="text-xs bg-gray-800 text-gray-400 px-3 py-1.5 rounded-full border border-gray-700/50">
+        {rooms.length} rooms
+      </span>
+    </div>
+
+    <!-- Verification Legend -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mb-6">
+      <h2 class="text-sm font-bold text-gray-300 mb-2">Verification Status</h2>
+      <div class="flex flex-wrap gap-3 text-xs">
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-green-500"></span><span class="text-gray-400">Verified in demo</span></span>
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-yellow-500"></span><span class="text-gray-400">Unconfirmed</span></span>
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-orange-500"></span><span class="text-gray-400">May vary by randomized run</span></span>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mb-8">
+      <p class="text-xs text-gray-400">
+        ⚠️ Data covers demo content only. Full game may contain additional differences. Each playthrough has randomized elements — your differences may differ. Last updated: {config.game.lastUpdated}. Each playthrough has randomized elements — the differences you encounter may differ from this list.
+      </p>
+    </div>
+
+    <!-- Difference Helper / Demo Checklist -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5 mb-6">
+      <h2 class="text-lg font-bold text-gray-200 mb-2">Dread Disc Difference Helper</h2>
+      <p class="text-sm text-gray-400">Your complete Dread Disc spot the difference guide — check off each change as you find it.</p>
+      <p class="text-sm text-gray-400 mb-3">
+        This interactive tool works as your Dread Disc difference helper and demo checklist. Use it to:
+      </p>
+      <ul class="text-sm text-gray-400 space-y-1.5 list-disc pl-5">
+        <li>Track every difference you find during your demo playthrough</li>
+        <li>Filter differences by room, change type, or spoiler level</li>
+        <li>Save your progress locally — your checklist state persists between sessions</li>
+        <li>See verification status for each difference (verified in demo, unconfirmed, or may vary)</li>
+        <li><strong>Room filter</strong> — show only differences in a specific room (Living Room, Kitchen, Bedroom, etc.)</li>
+        <li><strong>Change type filter</strong> — show only moved, missing, opened, damaged, or new objects</li>
+        <li><strong>Spoiler toggle</strong> — hide or reveal spoiler-level finds</li>
+      </ul>
+      <p class="text-xs text-gray-500 mt-3 italic">
+        Each playthrough has randomized elements — not all differences appear in every run.
+      </p>
+    </div>
+
+    <!-- Interactive Checklist -->
+    <div class="mb-12">
+      <DifferencesChecklist client:load differences={differences} />
+    </div>
+
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mb-8">
+      <p class="text-xs text-gray-400">
+        Last updated: {config.game.lastUpdated} · Status: Demo data verified · Differences may vary by randomized run
+      </p>
+    </div>
+
+    <!-- Related Guides -->
+    <div class="mb-8">
+      <h2 class="text-xl font-bold mb-4 text-gray-200">Related Guides</h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <a href="/all-differences/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="text-2xl block mb-2">📋</span>
+          <span class="font-semibold text-sm text-gray-200">All Differences</span>
+          <p class="text-xs text-gray-500 mt-1">Summary table view</p>
+        </a>
+        <a href="/doors-and-windows/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="text-2xl block mb-2">🚪</span>
+          <span class="font-semibold text-sm text-gray-200">Doors & Windows</span>
+          <p class="text-xs text-gray-500 mt-1">Safety checklist</p>
+        </a>
+        <a href="/survival-guide/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="text-2xl block mb-2">💀</span>
+          <span class="font-semibold text-sm text-gray-200">Survival Guide</span>
+          <p class="text-xs text-gray-500 mt-1">Rules & tips</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

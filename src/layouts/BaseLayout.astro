@@ -1,0 +1,58 @@
+---
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { getGameConfig } from '@/lib/data';
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const config = getGameConfig();
+const { title = config.seo.siteTitle, description = config.seo.siteDescription, canonical, ogImage = '/og-default.svg' } = Astro.props;
+const canonicalURL = canonical ? new URL(canonical, Astro.site) : new URL(Astro.url.pathname, Astro.site);
+const keywords = [...config.seo.primaryKeywords, ...config.seo.secondaryKeywords].join(', ');
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#991b1b" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <link rel="canonical" href={canonicalURL.href} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL.href} />
+  <meta property="og:site_name" content={config.game.name} />
+  <meta property="og:image" content={`${config.seo.baseUrl}${ogImage}`} />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${config.seo.baseUrl}${ogImage}`} />
+  <!-- Note: For maximum social platform compatibility, convert /og-default.svg to PNG and update this reference -->
+  <!-- Google Analytics 4 -->
+  <script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" async></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</head>
+<body class="min-h-screen bg-[#0a0a0f] text-gray-200 font-sans antialiased">
+  <Header />
+  <main class="min-h-[calc(100vh-180px)]">
+    <slot />
+  </main>
+  <Footer />
+</body>
+</html>

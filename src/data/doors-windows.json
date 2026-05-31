@@ -1,0 +1,84 @@
+{
+  "doorsWindows": [
+    {
+      "id": "dw-front-door",
+      "name": "Front Door",
+      "location": "Entrance Hall",
+      "currentState": "Closed",
+      "safeAction": "Keep closed and locked at all times",
+      "riskLevel": "critical",
+      "verified": "demo",
+      "notes": "Primary entry point. Changes state between checks. Highest priority."
+    },
+    {
+      "id": "dw-kitchen-window",
+      "name": "Kitchen Window",
+      "location": "Kitchen",
+      "currentState": "Closed",
+      "safeAction": "Keep closed and latched",
+      "riskLevel": "medium",
+      "verified": "demo",
+      "notes": "Check for visual changes through glass. May crack during events."
+    },
+    {
+      "id": "dw-living-room-window",
+      "name": "Living Room Window",
+      "location": "Living Room",
+      "currentState": "Closed",
+      "safeAction": "Keep curtains drawn and window latched",
+      "riskLevel": "medium",
+      "verified": "demo",
+      "notes": "Curtain position may change — verify both curtain and window."
+    },
+    {
+      "id": "dw-bedroom-window",
+      "name": "Bedroom Window",
+      "location": "Bedroom",
+      "currentState": "Closed",
+      "safeAction": "Keep closed and locked",
+      "riskLevel": "high",
+      "verified": "demo",
+      "notes": "Can open during certain events. Check each cycle."
+    },
+    {
+      "id": "dw-bathroom-door",
+      "name": "Bathroom Door",
+      "location": "Hallway",
+      "currentState": "Closed",
+      "safeAction": "Keep closed",
+      "riskLevel": "low",
+      "verified": "demo",
+      "notes": "Lower risk but still needs checking each round."
+    },
+    {
+      "id": "dw-bedroom-door",
+      "name": "Bedroom Door",
+      "location": "Hallway",
+      "currentState": "Open",
+      "safeAction": "Close and check before entering",
+      "riskLevel": "medium",
+      "verified": "demo",
+      "notes": "Starts open. Verify state hasn't changed unexpectedly."
+    },
+    {
+      "id": "dw-kitchen-door",
+      "name": "Kitchen Door",
+      "location": "Hallway",
+      "currentState": "Open",
+      "safeAction": "Check state each cycle",
+      "riskLevel": "low",
+      "verified": "demo",
+      "notes": "Connects hallway to kitchen. Usually stays open."
+    },
+    {
+      "id": "dw-balcony-door",
+      "name": "Balcony/Back Door",
+      "location": "Living Room",
+      "currentState": "Locked",
+      "safeAction": "Verify lock remains engaged",
+      "riskLevel": "high",
+      "verified": "demo",
+      "notes": "High-risk entry point. Lock can become disengaged between checks."
+    }
+  ]
+}

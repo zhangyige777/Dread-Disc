@@ -1,0 +1,212 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { generateBreadcrumbSchema } from '@/lib/data';
+import JsonLd from '@/components/JsonLd.astro';
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Terms', url: '/terms/' },
+]);
+---
+
+<BaseLayout title="Terms of Use - Dread Disc Guide" description="Terms of use for the Dread Disc Guide fan site.">
+  <JsonLd schema={breadcrumbSchema} />
+
+  <section class="max-w-3xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-red-400 transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-300">Terms of Use</span>
+    </nav>
+
+    <h1 class="text-3xl font-extrabold mb-6 text-gray-100">Terms of Use</h1>
+
+    <div class="space-y-6 text-gray-400 text-sm leading-relaxed">
+      <p><strong class="text-gray-200">Last updated:</strong> May 2026</p>
+
+      <p>
+        By accessing and using the Dread Disc Guide website, you agree to the following terms.
+        If you do not agree with any part of these terms, please do not use this site.
+      </p>
+
+      <!-- Fan-Made Disclaimer -->
+      <div class="bg-red-900/20 border border-red-800/40 rounded-xl p-5">
+        <h2 class="font-bold text-red-400 mb-3 text-base">Fan-Made Unofficial Site</h2>
+        <p>
+          This website is an <strong class="text-gray-200">independent, fan-created guide</strong> for the game Dread Disc.
+          This site is <strong class="text-gray-200">not affiliated with, endorsed by, sponsored by, or officially connected to</strong>
+          MadBug, Steam, Valve Corporation, itch.io, or any other game publisher, developer, or distributor.
+        </p>
+        <p class="mt-3">
+          "Dread Disc" and all related game content, assets, characters, and trademarks are the exclusive property of MadBug and their respective owners.
+          Any use of game names, imagery, or terminology on this site is for informational and identification purposes only.
+        </p>
+      </div>
+
+      <!-- Content Accuracy -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">Content Accuracy Disclaimer</h2>
+        <p class="mb-3">
+          While we make every effort to ensure the accuracy and reliability of our guides, checklists, and game data, the following limitations apply:
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span><strong class="text-gray-200">Pre-release content:</strong> Dread Disc is in active development. Guides and checklist data may change before the full release of the game. Demo content does not necessarily reflect the final product.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span><strong class="text-gray-200">Randomization:</strong> Certain game elements may be randomized or procedurally generated. Your in-game experience may differ from what is described in our guides.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span><strong class="text-gray-200">No guarantees:</strong> We provide this information "as is" without warranties of any kind, express or implied. We do not guarantee that all information is complete, current, or error-free.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span><strong class="text-gray-200">Community-sourced data:</strong> Some information may be based on community reports that have not been independently verified by our team.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Game Content Ownership -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">Game Content Ownership</h2>
+        <p>
+          All game content referenced on this site — including but not limited to game mechanics, story elements, character names,
+          locations, items, visuals, audio, and any other in-game content — is the property of <strong class="text-gray-200">MadBug</strong>,
+          the developer and rights holder of Dread Disc.
+        </p>
+        <p class="mt-3">
+          No ownership claim is made by this site over any game content. References to game elements are made solely for the purpose
+          of providing helpful guidance to players.
+        </p>
+      </div>
+
+      <!-- Fair Use -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">Fair Use of Trademarks &amp; Names</h2>
+        <p>
+          The use of the game name "Dread Disc," the developer name "MadBug," and references to Steam, Valve, itch.io, and other
+          trademarks on this site constitutes nominative fair use. These references are used:
+        </p>
+        <ul class="mt-2 space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>To identify the game and its developer for the purpose of providing a player guide</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>To direct players to official sources for purchasing and playing the game</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>To provide accurate context for guide content and data sourcing</span>
+          </li>
+        </ul>
+        <p class="mt-3">
+          All trademarks and trade names are the property of their respective owners. Their use on this site does not imply any endorsement,
+          sponsorship, or affiliation.
+        </p>
+      </div>
+
+      <!-- Data Integrity -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">Data Integrity &amp; Sourcing</h2>
+        <p>
+          We take data accuracy seriously. Our commitment:
+        </p>
+        <ul class="mt-2 space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span><strong class="text-gray-200">We do not fabricate game content.</strong> All data is sourced from the official <a href="https://store.steampowered.com/app/4156540/Dread_Disc/" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300">Steam page</a>, the <a href="https://madbug.itch.io/dread-disc" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300">itch.io page</a>, and direct in-game observation.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>Every piece of content is tagged with a verification status (Verified in demo, Unconfirmed, or May vary) so you know how reliable it is.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>We update our data weekly and whenever new demo versions or full game content is released.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>Community-reported errors are reviewed and corrected promptly when verified.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- External Links -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">External Links Disclaimer</h2>
+        <p>
+          This site contains links to external websites, including the official Steam store page, itch.io developer page,
+          Reddit communities, and other third-party resources. These links are provided for your convenience and reference.
+        </p>
+        <ul class="mt-2 space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>We are <strong class="text-gray-200">not responsible</strong> for the content, privacy practices, or policies of any external website.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>The inclusion of a link does not imply endorsement or recommendation of the linked site or its content.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>External sites may change their content, URLs, or availability without notice. We try to keep links current but cannot guarantee all links remain active.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Use of Site -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">Use of This Site</h2>
+        <p class="mb-3">
+          This site is provided free of charge for personal gameplay reference. By using this site, you agree to the following:
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>You may use the checklists, walkthroughs, and tools for your <strong class="text-gray-200">personal gameplay</strong> and reference.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>You may <strong class="text-gray-200">not</strong> republish, redistribute, or copy our original guide text, tool designs, or site content without prior written permission.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>You may share links to this site freely.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>You may <strong class="text-gray-200">not</strong> use this site or its content for any commercial purpose without permission.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>We reserve the right to modify, suspend, or discontinue any part of the site at any time without notice.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Limitation of Liability -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">Limitation of Liability</h2>
+        <p>
+          To the fullest extent permitted by applicable law, the Dread Disc Guide and its contributors shall not be liable for any
+          direct, indirect, incidental, special, or consequential damages arising from your use of or inability to use this site,
+          including but not limited to loss of data, gameplay outcomes, or any other damages. Use this site and its content at your own discretion.
+        </p>
+      </div>
+
+      <!-- Contact -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">Questions About These Terms</h2>
+        <p>
+          If you have questions about these terms of use or need clarification on any section, please visit our
+          <a href="/contact/" class="text-red-400 hover:text-red-300">contact page</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

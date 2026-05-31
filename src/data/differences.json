@@ -1,0 +1,136 @@
+{
+  "differences": [
+    {
+      "id": "diff-living-room-painting-moved",
+      "room": "Living Room",
+      "objectCategory": "Wall Art",
+      "objectName": "Painting above sofa",
+      "changeType": "moved",
+      "description": "Painting has shifted position on the wall",
+      "spoilerLevel": "light",
+      "verified": "demo",
+      "notes": "Compare with initial room state. Position may vary."
+    },
+    {
+      "id": "diff-living-room-cushion-missing",
+      "room": "Living Room",
+      "objectCategory": "Furniture",
+      "objectName": "Sofa cushion",
+      "changeType": "missing",
+      "description": "One of the sofa cushions has disappeared",
+      "spoilerLevel": "light",
+      "verified": "demo",
+      "notes": "Check all seating positions carefully."
+    },
+    {
+      "id": "diff-living-room-lamp-damaged",
+      "room": "Living Room",
+      "objectCategory": "Lighting",
+      "objectName": "Floor lamp",
+      "changeType": "damaged",
+      "description": "Lamp shade is tilted or cracked",
+      "spoilerLevel": "light",
+      "verified": "demo",
+      "notes": "Lighting changes can be subtle in dark areas."
+    },
+    {
+      "id": "diff-kitchen-drawer-opened",
+      "room": "Kitchen",
+      "objectCategory": "Furniture",
+      "objectName": "Kitchen drawer",
+      "changeType": "opened",
+      "description": "Drawer that was closed is now open",
+      "spoilerLevel": "light",
+      "verified": "demo",
+      "notes": "May vary by randomized run."
+    },
+    {
+      "id": "diff-kitchen-cupboard-door-open",
+      "room": "Kitchen",
+      "objectCategory": "Furniture",
+      "objectName": "Upper cupboard door",
+      "changeType": "opened",
+      "description": "A cupboard door is slightly ajar",
+      "spoilerLevel": "light",
+      "verified": "demo",
+      "notes": "Check all cupboard doors each cycle."
+    },
+    {
+      "id": "diff-kitchen-knife-missing",
+      "room": "Kitchen",
+      "objectCategory": "Objects",
+      "objectName": "Kitchen knife",
+      "changeType": "missing",
+      "description": "Knife that was on the counter is gone",
+      "spoilerLevel": "light",
+      "verified": "demo",
+      "notes": "High-priority find — may relate to safety events."
+    },
+    {
+      "id": "diff-bedroom-curtain-moved",
+      "room": "Bedroom",
+      "objectCategory": "Window",
+      "objectName": "Curtain position",
+      "changeType": "moved",
+      "description": "Curtain has been pulled to one side",
+      "spoilerLevel": "light",
+      "verified": "demo",
+      "notes": "Window behind curtain may also change."
+    },
+    {
+      "id": "diff-bedroom-pillow-moved",
+      "room": "Bedroom",
+      "objectCategory": "Furniture",
+      "objectName": "Bed pillow",
+      "changeType": "moved",
+      "description": "Pillow has shifted from its original position",
+      "spoilerLevel": "light",
+      "verified": "demo",
+      "notes": "Small changes — compare carefully."
+    },
+    {
+      "id": "diff-bathroom-mirror-new",
+      "room": "Bathroom",
+      "objectCategory": "Wall Art",
+      "objectName": "Mirror reflection",
+      "changeType": "new",
+      "description": "Something new appears reflected in the mirror",
+      "spoilerLevel": "full",
+      "verified": "demo",
+      "notes": "⚠️ Spoiler-level find. Look carefully at reflections."
+    },
+    {
+      "id": "diff-hallway-light-damaged",
+      "room": "Hallway",
+      "objectCategory": "Lighting",
+      "objectName": "Ceiling light",
+      "changeType": "damaged",
+      "description": "Hallway light is flickering or cracked",
+      "spoilerLevel": "light",
+      "verified": "demo",
+      "notes": "Lighting changes affect visibility of other differences."
+    },
+    {
+      "id": "diff-hallway-door-new",
+      "room": "Hallway",
+      "objectCategory": "Door",
+      "objectName": "Extra door",
+      "changeType": "new",
+      "description": "A door that was not there before has appeared",
+      "spoilerLevel": "full",
+      "verified": "demo",
+      "notes": "⚠️ Spoiler-level find. Do NOT open unprepared."
+    },
+    {
+      "id": "diff-entrance-mat-moved",
+      "room": "Entrance",
+      "objectCategory": "Objects",
+      "objectName": "Welcome mat",
+      "changeType": "moved",
+      "description": "Mat has been moved or flipped",
+      "spoilerLevel": "light",
+      "verified": "demo",
+      "notes": "Easy to miss — check floor details."
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "game": {
+    "name": "Dread Disc",
+    "steamAppId": "4156540",
+    "demoAppId": "4363590",
+    "developer": "MadBug",
+    "publisher": "MadBug",
+    "genre": "Psychological Horror, Spot-the-Difference, Puzzle",
+    "releaseDate": "TBA",
+    "currentVersion": "Demo",
+    "lastUpdated": "2026-05-31",
+    "platforms": ["Windows PC (Steam)", "Windows PC (itch.io)"],
+    "price": "TBA",
+    "rating": "Coming Soon",
+    "itchUrl": "https://madbug.itch.io/dread-disc",
+    "description": "A psychological horror game about spotting differences in a changing apartment. Every detail matters as the environment shifts around you. Lock every door and window before it gets in.",
+    "tags": ["Psychological Horror", "Spot the Difference", "Puzzle", "First-Person", "Atmospheric", "Mystery", "Indie", "Singleplayer", "Survival"]
+  },
+  "stats": {
+    "demoAvailable": true,
+    "releaseDate": "Coming Soon",
+    "platform": "Steam, itch.io",
+    "genre": "Psychological Horror + Puzzle",
+    "status": "Demo Available",
+    "developer": "MadBug"
+  },
+  "seo": {
+    "siteTitle": "Dread Disc Guide - Demo Walkthrough, Differences & Checklist",
+    "siteDescription": "Use this Dread Disc guide for the Steam demo, apartment differences, door and window safety checklist, puzzle tips, ending notes, and release updates.",
+    "baseUrl": "https://dreaddiscguide.online",
+    "primaryKeywords": [
+      "dread disc guide",
+      "dread disc walkthrough",
+      "dread disc differences",
+      "dread disc checklist",
+      "dread disc demo"
+    ],
+    "secondaryKeywords": [
+      "dread disc demo walkthrough",
+      "dread disc all differences",
+      "dread disc door safety",
+      "dread disc window checklist",
+      "dread disc puzzle guide",
+      "dread disc endings",
+      "dread disc apartment changes",
+      "dread disc survival guide",
+      "dread disc release date",
+      "dread disc system requirements",
+      "dread disc download",
+      "dread disc steam",
+      "dread disc madbug"
+    ],
+    "defaultOgImage": "/og-default.svg"
+  },
+  "routes": [
+    { "path": "/", "title": "Dread Disc Guide", "priority": "1.0" },
+    { "path": "/demo-walkthrough/", "title": "Dread Disc Demo Walkthrough", "priority": "0.9" },
+    { "path": "/differences-checklist/", "title": "Dread Disc Differences Checklist", "priority": "0.9" },
+    { "path": "/doors-and-windows/", "title": "Dread Disc Door & Window Safety", "priority": "0.9" },
+    { "path": "/survival-guide/", "title": "Dread Disc Survival Guide", "priority": "0.9" },
+    { "path": "/walkthrough/", "title": "Dread Disc Walkthrough", "priority": "0.8" },
+    { "path": "/all-differences/", "title": "Dread Disc All Differences", "priority": "0.8" },
+    { "path": "/apartment-changes/", "title": "Dread Disc Apartment Changes", "priority": "0.8" },
+    { "path": "/puzzle-guide/", "title": "Dread Disc Puzzle Guide", "priority": "0.8" },
+    { "path": "/endings/", "title": "Dread Disc Endings", "priority": "0.8" },
+    { "path": "/download/", "title": "Dread Disc Download", "priority": "0.7" },
+    { "path": "/faq/", "title": "Dread Disc FAQ", "priority": "0.7" },
+    { "path": "/release-date/", "title": "Dread Disc Release Date", "priority": "0.7" },
+    { "path": "/system-requirements/", "title": "Dread Disc System Requirements", "priority": "0.7" },
+    { "path": "/updates/", "title": "Dread Disc Updates", "priority": "0.7" },
+    { "path": "/about/", "title": "About", "priority": "0.5" },
+    { "path": "/privacy-policy/", "title": "Privacy Policy", "priority": "0.3" },
+    { "path": "/terms/", "title": "Terms", "priority": "0.3" },
+    { "path": "/contact/", "title": "Contact", "priority": "0.3" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Dread Disc Guide",
+  "short_name": "DD Guide",
+  "description": "Dread Disc demo walkthrough, differences checklist, door and window safety guide",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#991b1b",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

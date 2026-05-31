@@ -1,0 +1,17 @@
+---
+import { getGameConfig } from '@/lib/data';
+const config = getGameConfig();
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-gray-800/60 mt-16 py-8">
+  <div class="max-w-6xl mx-auto px-4 text-center text-sm text-gray-500">
+    <div class="flex justify-center gap-4 mb-3">
+      <a href="/about/" class="hover:text-red-400 transition-colors">About</a>
+      <a href="/privacy-policy/" class="hover:text-red-400 transition-colors">Privacy Policy</a>
+      <a href="/terms/" class="hover:text-red-400 transition-colors">Terms</a>
+      <a href="/contact/" class="hover:text-red-400 transition-colors">Contact</a>
+    </div>
+    <p class="mb-2">💿 {config.game.name} Guide — Fan-made companion site. Not affiliated with {config.game.developer}.</p>
+    <p>&copy; {year} All rights reserved.</p>
+  </div>
+</footer>

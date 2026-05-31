@@ -1,0 +1,48 @@
+{
+  "faqs": [
+    {
+      "question": "What is Dread Disc?",
+      "answer": "Dread Disc is a psychological horror / spot-the-difference / puzzle game by MadBug. You observe a changing apartment and must identify what has changed between visits, while keeping all doors and windows locked to survive."
+    },
+    {
+      "question": "Is there a Dread Disc demo?",
+      "answer": "Yes, a free demo is available on both Steam and itch.io. The demo covers a portion of the apartment with the core spot-the-difference and door/window security mechanics."
+    },
+    {
+      "question": "When does Dread Disc release?",
+      "answer": "Dread Disc is listed as 'Coming Soon' on Steam. No official release date has been announced yet. Follow the Steam page or the developer's itch.io page for updates."
+    },
+    {
+      "question": "Is Dread Disc free?",
+      "answer": "The demo is completely free on both Steam and itch.io. The full game price has not been announced yet."
+    },
+    {
+      "question": "Is Dread Disc on Steam?",
+      "answer": "Yes, Dread Disc has a Steam page and a free demo available for download. You can find it at store.steampowered.com/app/4156540/Dread_Disc/"
+    },
+    {
+      "question": "Does Dread Disc have randomized elements?",
+      "answer": "Yes. According to the developer, each playthrough has randomized elements. This means differences, object positions, and some events may vary between runs."
+    },
+    {
+      "question": "How long is the Dread Disc demo?",
+      "answer": "The demo playtime varies depending on your observation speed, but most players report roughly 15–30 minutes for a single run. Multiple runs are recommended to experience different randomized variations."
+    },
+    {
+      "question": "What platforms is Dread Disc on?",
+      "answer": "Dread Disc is currently available as a demo on Steam and itch.io for Windows PC. Full game platform availability has not been confirmed yet."
+    },
+    {
+      "question": "How many endings does Dread Disc have?",
+      "answer": "The exact number of endings has not been officially confirmed. The demo appears to have multiple possible outcomes based on player choices. Full game endings will be documented after release."
+    },
+    {
+      "question": "Who developed Dread Disc?",
+      "answer": "Dread Disc is developed by MadBug, an independent game developer. You can find their other work on itch.io at madbug.itch.io."
+    },
+    {
+      "question": "Does Dread Disc have randomized elements?",
+      "answer": "Yes. The developer has confirmed that each playthrough has randomized elements. This means the specific differences, object positions, and some events may vary between runs. You cannot memorize a fixed set of changes — careful observation is required each cycle."
+    }
+  ]
+}

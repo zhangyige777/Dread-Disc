@@ -1,0 +1,199 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import {
+  getGameConfig,
+  generateBreadcrumbSchema,
+  generateFAQSchema,
+  generateArticleSchema,
+} from '@/lib/data';
+
+const config = getGameConfig();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Survival Guide', url: '/survival-guide/' },
+]);
+
+const articleSchema = generateArticleSchema(
+  'Dread Disc Survival Guide',
+  'Complete survival rules, observation order, door and window security tips for Dread Disc',
+  '/survival-guide/'
+);
+
+const faqs = [
+  { question: 'What happens if I miss a door or window?', answer: 'Leaving a door or window unsecured increases the risk of failure in the next observation cycle. Critical entry points like the front door and balcony door have the highest impact if left unchecked.' },
+  { question: 'Can I die in Dread Disc?', answer: 'The demo features failure states that can end your run. The full game may have more severe consequences. Maintaining security and spotting differences are your primary survival tools.' },
+  { question: 'How do randomized elements affect survival?', answer: 'Each run randomizes which differences appear and some door/window state changes. This means you cannot memorize a fixed pattern — you must observe carefully each cycle.' },
+];
+const faqSchema = generateFAQSchema(faqs);
+---
+
+<BaseLayout
+  title="Dread Disc Survival Guide"
+  description="Dread Disc survival rules, observation order, door and window security tips, and common failure causes. Verified for demo."
+>
+  <JsonLd schema={[breadcrumbSchema, faqSchema, articleSchema]} />
+
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-red-400 transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-300">Survival Guide</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-100">
+      Dread Disc Survival Guide
+    </h1>
+
+    <p class="text-sm text-gray-500 mb-2">How to survive in Dread Disc — rules, tips, and common mistakes</p>
+
+    <p class="text-gray-400 mb-6 leading-relaxed">
+      Survival in Dread Disc comes down to two skills: <strong class="text-gray-200">careful observation</strong> and
+      <strong class="text-gray-200">diligent security</strong>. This guide covers the rules, recommended observation order,
+      and the most common ways players fail.
+    </p>
+
+    <div class="flex items-center gap-3 mb-8">
+      <span class="text-xs bg-green-900/30 text-green-400 px-3 py-1 rounded-full border border-green-700/40">✓ Verified in demo</span>
+      <span class="text-xs bg-gray-800 text-gray-400 px-3 py-1 rounded-full">Demo Content</span>
+    </div>
+
+    <!-- Core Survival Rules -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-gray-200">Core Survival Rules</h2>
+      <div class="space-y-4">
+        {[
+          { num: 1, rule: 'Establish your baseline before anything changes', detail: 'On your first entry, walk through every single room. Open every door, check every window, note every object position. This is the most important step — your ability to spot differences depends entirely on knowing the baseline.' },
+          { num: 2, rule: 'Lock every door and window before leaving', detail: 'The game\'s tagline is literal: "lock every door and window before it gets in." Before exiting the apartment after each observation cycle, verify that every entry point is closed and locked. Use the Door & Window Safety Checklist.' },
+          { num: 3, rule: 'Observe systematically, not randomly', detail: 'Follow a consistent room order each cycle. Start from the entrance and work inward. This prevents you from accidentally skipping a room or missing a door state change.' },
+          { num: 4, rule: 'Prioritize security over completeness', detail: 'If you\'re running low on time or feeling overwhelmed, secure the critical entry points (front door, balcony door) before trying to spot every difference. A secured apartment with missed differences is better than an unsecured one.' },
+          { num: 5, rule: 'Expect randomized changes', detail: 'No two runs are identical. The differences, door states, and some events vary each playthrough. Don\'t rely on memorizing specific patterns — focus on your observation skills instead.' },
+        ].map(({ num, rule, detail }) => (
+          <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+            <div class="flex items-start gap-3">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-700 text-white font-bold text-sm shrink-0">{num}</span>
+              <div>
+                <h3 class="font-bold text-gray-200 mb-1">{rule}</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">{detail}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Observation Order -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-gray-200">Recommended Observation Order</h2>
+      <p class="text-gray-400 mb-4 text-sm">Follow this room sequence on each observation cycle for maximum coverage:</p>
+      <div class="grid sm:grid-cols-2 gap-3">
+        {[
+          { step: '1st', room: 'Entrance Hall', reason: 'Check front door first — critical entry point' },
+          { step: '2nd', room: 'Living Room', reason: 'Largest room, most objects, balcony door' },
+          { step: '3rd', room: 'Kitchen', reason: 'Multiple small objects, drawers, window' },
+          { step: '4th', room: 'Hallway', reason: 'Transitional area, ceiling light, doors to other rooms' },
+          { step: '5th', room: 'Bedroom', reason: 'Window and curtain changes, bed/pillow positions' },
+          { step: '6th', room: 'Bathroom', reason: 'Mirror reflections, smaller room but important details' },
+        ].map(({ step, room, reason }) => (
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/30 border border-gray-700/30">
+            <span class="text-xs font-bold text-red-400 bg-red-900/20 px-2 py-1 rounded shrink-0">{step}</span>
+            <div>
+              <span class="text-sm font-medium text-gray-200">{room}</span>
+              <p class="text-xs text-gray-500">{reason}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- When to Lock Doors & Windows -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-gray-200">When to Lock Doors & Windows</h2>
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6">
+        <div class="space-y-4 text-sm">
+          <div class="flex gap-3">
+            <span class="text-red-400 shrink-0">🔴</span>
+            <div><strong class="text-gray-200">Before leaving the apartment:</strong> <span class="text-gray-400">This is non-negotiable. Every cycle ends with a full security check.</span></div>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-red-400 shrink-0">🔴</span>
+            <div><strong class="text-gray-200">After spotting differences:</strong> <span class="text-gray-400">Some differences involve door/window state changes. Secure them immediately after identifying the change.</span></div>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-yellow-400 shrink-0">🟡</span>
+            <div><strong class="text-gray-200">During escalation phases:</strong> <span class="text-gray-400">In later cycles, doors and windows can change state mid-observation. Re-check critical entry points even during a cycle.</span></div>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-green-400 shrink-0">🟢</span>
+            <div><strong class="text-gray-200">Before investigating new objects:</strong> <span class="text-gray-400">If a new door appears (spoiler-level change), secure all other entry points before approaching it.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Common Failure Causes -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-gray-200">Common Failure Causes</h2>
+      <div class="space-y-3">
+        {[
+          { cause: 'Missing a critical door or window', fix: 'Use the Door & Window Safety Checklist. Check every entry point, every cycle, without exception.' },
+          { cause: 'Rushing through observation', fix: 'Slow down. Take your time on each room. The game does not punish careful observation in early cycles.' },
+          { cause: 'Not establishing a baseline', fix: 'Your first walkthrough should be the most thorough. Memorize everything before any changes occur.' },
+          { cause: 'Assuming states stay the same', fix: 'Doors and windows can change state between cycles. Never assume something is still locked — verify.' },
+          { cause: 'Ignoring the front door', fix: 'The front door is the #1 priority. Always check it first and last in every cycle.' },
+        ].map(({ cause, fix }) => (
+          <div class="bg-red-900/10 border border-red-700/30 rounded-xl p-4">
+            <h3 class="text-sm font-bold text-red-400 mb-1">✗ {cause}</h3>
+            <p class="text-sm text-gray-400"><strong class="text-gray-300">Fix:</strong> {fix}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mb-8">
+      <p class="text-xs text-gray-400">
+        Last updated: {config.game.lastUpdated} · Status: Demo information verified · Full release may change
+      </p>
+    </div>
+
+    <!-- Related Guides -->
+    <div class="mb-8">
+      <h2 class="text-xl font-bold mb-4 text-gray-200">Related Guides</h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <a href="/demo-walkthrough/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="text-2xl block mb-2">🎮</span>
+          <span class="font-semibold text-sm text-gray-200">Demo Walkthrough</span>
+          <p class="text-xs text-gray-500 mt-1">Step-by-step guide</p>
+        </a>
+        <a href="/differences-checklist/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="text-2xl block mb-2">🔍</span>
+          <span class="font-semibold text-sm text-gray-200">Differences Checklist</span>
+          <p class="text-xs text-gray-500 mt-1">Track all changes</p>
+        </a>
+        <a href="/doors-and-windows/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="text-2xl block mb-2">🚪</span>
+          <span class="font-semibold text-sm text-gray-200">Doors & Windows</span>
+          <p class="text-xs text-gray-500 mt-1">Safety checklist</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="mb-8">
+      <h2 class="text-xl font-bold mb-4 text-gray-200">FAQ</h2>
+      <div class="space-y-3">
+        {faqs.map(faq => (
+          <details class="group border border-gray-700/50 rounded-lg bg-gray-800/30">
+            <summary class="flex items-center justify-between p-4 cursor-pointer font-medium hover:bg-gray-800/50 transition-colors text-gray-200">
+              <span>{faq.question}</span>
+              <span class="ml-2 text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-400">{faq.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

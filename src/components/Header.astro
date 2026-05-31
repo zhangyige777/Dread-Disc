@@ -1,0 +1,19 @@
+---
+import { getGameConfig } from '@/lib/data';
+const config = getGameConfig();
+---
+<header class="border-b border-gray-800/60 bg-[#0a0a0f]/90 backdrop-blur-sm sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+    <a href="/" class="font-bold text-lg tracking-tight hover:text-red-500 transition-colors">
+      <span class="text-red-600">💿</span> {config.game.name}
+      <span class="text-xs text-gray-500 ml-2 font-normal hidden sm:inline">Guide & Tools</span>
+    </a>
+    <nav class="flex items-center gap-1 text-sm font-medium text-gray-300">
+      <a href="/demo-walkthrough/" class="px-3 py-2 rounded-md hover:bg-gray-800 hover:text-red-400 transition-colors hidden md:block">Demo Walkthrough</a>
+      <a href="/differences-checklist/" class="px-3 py-2 rounded-md hover:bg-gray-800 hover:text-red-400 transition-colors">Differences</a>
+      <a href="/doors-and-windows/" class="px-3 py-2 rounded-md hover:bg-gray-800 hover:text-red-400 transition-colors hidden sm:block">Doors & Windows</a>
+      <a href="/survival-guide/" class="px-3 py-2 rounded-md hover:bg-gray-800 hover:text-red-400 transition-colors hidden md:block">Survival</a>
+      <a href="/faq/" class="px-3 py-2 rounded-md hover:bg-gray-800 hover:text-red-400 transition-colors">FAQ</a>
+    </nav>
+  </div>
+</header>

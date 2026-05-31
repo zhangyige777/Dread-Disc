@@ -1,0 +1,151 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import {
+  getGameConfig,
+  getDemoWalkthrough,
+  generateBreadcrumbSchema,
+  generateFAQSchema,
+  generateArticleSchema,
+} from '@/lib/data';
+
+const config = getGameConfig();
+const walkthrough = getDemoWalkthrough();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Demo Walkthrough', url: '/demo-walkthrough/' },
+]);
+
+const faqs = [
+  { question: 'How long is the Dread Disc demo?', answer: 'Most players complete a single demo run in roughly 15–30 minutes. Multiple runs are recommended due to randomized elements.' },
+  { question: 'Can I play the demo on itch.io?', answer: 'Yes, the demo is available on both Steam and itch.io for free.' },
+  { question: 'Does the demo have spoilers?', answer: 'The demo contains early-game content only. Our walkthrough offers a spoiler-light mode that gives hints without revealing specific details.' },
+];
+const faqSchema = generateFAQSchema(faqs);
+
+const articleSchema = generateArticleSchema(
+  'Dread Disc Demo Walkthrough',
+  'Step-by-step Dread Disc demo walkthrough with spoiler-light and full spoiler routes',
+  '/demo-walkthrough/'
+);
+---
+
+<BaseLayout
+  title="Dread Disc Demo Walkthrough"
+  description="Step-by-step Dread Disc demo walkthrough with spoiler-light and full spoiler routes. Covers all observation cycles and door security tips."
+>
+  <JsonLd schema={[breadcrumbSchema, faqSchema, articleSchema]} />
+
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-red-400 transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-300">Demo Walkthrough</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-100">
+      Dread Disc Demo Walkthrough
+    </h1>
+
+    <!-- Status Badge -->
+    <div class="flex items-center gap-3 mb-6">
+      <span class="text-xs bg-green-900/30 text-green-400 px-3 py-1 rounded-full border border-green-700/40">Verified in demo</span>
+      <span class="text-xs bg-gray-800 text-gray-400 px-3 py-1 rounded-full">Demo Content</span>
+    </div>
+
+    <p class="text-gray-400 mb-6 leading-relaxed">
+      This walkthrough covers the current demo version of Dread Disc. Choose between a
+      <strong class="text-gray-200">spoiler-light route</strong> (hints and general guidance) or a
+      <strong class="text-gray-200">full spoiler route</strong> (complete details and specific differences).
+    </p>
+
+    <!-- Disclaimer -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mb-8">
+      <p class="text-xs text-gray-400">
+        Demo content may change before full release. Each playthrough has randomized elements — your run may differ from this walkthrough. Last updated: {config.game.lastUpdated}.
+      </p>
+    </div>
+
+    <!-- Walkthrough Steps -->
+    <div class="space-y-6 mb-12">
+      {walkthrough.map((step) => (
+        <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-700 text-white font-bold text-sm">{step.stage}</span>
+            <h2 class="text-lg font-bold text-gray-200">{step.title}</h2>
+          </div>
+          <p class="text-gray-300 mb-3 leading-relaxed">{step.spoilerLight}</p>
+          {step.tips && (
+            <div class="bg-yellow-900/20 border border-yellow-700/30 rounded-lg p-3 text-sm text-yellow-300">
+              <strong>Tip:</strong> {step.tips}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- Demo Checklist Callout -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mb-6">
+      <h3 class="text-sm font-bold text-gray-200 mb-1">Dread Disc Demo Checklist</h3>
+      <p class="text-xs text-gray-400">Use this walkthrough alongside our interactive checklists to track your demo progress. Check off each step as you complete it.</p>
+    </div>
+
+    <!-- Quick Tips -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 mb-12">
+      <h2 class="text-xl font-bold mb-4 text-gray-200">Quick Tips</h2>
+      <ul class="space-y-2 text-sm text-gray-400">
+        <li class="flex gap-2"><span class="text-red-400">•</span> Walk through every room slowly on your first visit — this is your baseline.</li>
+        <li class="flex gap-2"><span class="text-red-400">•</span> Check every door and window before leaving the apartment.</li>
+        <li class="flex gap-2"><span class="text-red-400">•</span> Use the <a href="/differences-checklist/" class="text-red-400 hover:text-red-300">Differences Checklist</a> while playing.</li>
+        <li class="flex gap-2"><span class="text-red-400">•</span> The <a href="/doors-and-windows/" class="text-red-400 hover:text-red-300">Door and Window Safety Checklist</a> helps track entry points.</li>
+        <li class="flex gap-2"><span class="text-red-400">•</span> Differences are randomized — do not expect the exact same changes each run.</li>
+      </ul>
+    </div>
+
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mb-8">
+      <p class="text-xs text-gray-400">
+        Last updated: {config.game.lastUpdated} · Status: Demo information verified · Full release may change
+      </p>
+    </div>
+
+    <!-- Related Guides -->
+    <div class="mb-12">
+      <h2 class="text-xl font-bold mb-4 text-gray-200">Related Guides</h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <a href="/differences-checklist/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="text-2xl block mb-2">🔍</span>
+          <span class="font-semibold text-sm text-gray-200">Differences Checklist</span>
+          <p class="text-xs text-gray-500 mt-1">Track all apartment changes</p>
+        </a>
+        <a href="/doors-and-windows/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="text-2xl block mb-2">🚪</span>
+          <span class="font-semibold text-sm text-gray-200">Doors and Windows</span>
+          <p class="text-xs text-gray-500 mt-1">Safety checklist and risk levels</p>
+        </a>
+        <a href="/survival-guide/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="text-2xl block mb-2">💀</span>
+          <span class="font-semibold text-sm text-gray-200">Survival Guide</span>
+          <p class="text-xs text-gray-500 mt-1">Rules, tips and failure causes</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="mb-8">
+      <h2 class="text-xl font-bold mb-4 text-gray-200">FAQ</h2>
+      <div class="space-y-3">
+        {faqs.map(faq => (
+          <details class="group border border-gray-700/50 rounded-lg bg-gray-800/30">
+            <summary class="flex items-center justify-between p-4 cursor-pointer font-medium hover:bg-gray-800/50 transition-colors text-gray-200">
+              <span>{faq.question}</span>
+              <span class="ml-2 text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-400">{faq.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

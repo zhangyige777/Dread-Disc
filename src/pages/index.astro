@@ -1,0 +1,277 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FAQItem from '@/components/FAQItem.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import {
+  getGameConfig,
+  getDifferences,
+  getFaqs,
+  generateBreadcrumbSchema,
+  generateFAQSchema,
+  generateVideoGameSchema,
+  getCurrentDateString,
+} from '@/lib/data';
+
+const config = getGameConfig();
+const differences = getDifferences();
+const faqData = getFaqs();
+const currentDate = getCurrentDateString();
+
+const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }]);
+const videoGameSchema = generateVideoGameSchema();
+
+const homeFaqs = faqData.slice(0, 5);
+const faqSchema = generateFAQSchema(homeFaqs);
+
+const guideLinks = [
+  { emoji: '🎮', title: 'Demo Walkthrough', description: 'Spoiler-light & full route', href: '/demo-walkthrough/' },
+  { emoji: '🔍', title: 'Differences Checklist', description: 'Track all apartment changes', href: '/differences-checklist/' },
+  { emoji: '🚪', title: 'Doors & Windows', description: 'Safety checklist & risk levels', href: '/doors-and-windows/' },
+  { emoji: '💀', title: 'Survival Guide', description: 'Rules, tips & failure causes', href: '/survival-guide/' },
+  { emoji: '🧩', title: 'Puzzle Guide', description: 'Mechanics & spoiler-free hints', href: '/puzzle-guide/' },
+  { emoji: '🏁', title: 'Endings', description: 'Tracker & demo outcomes', href: '/endings/' },
+];
+
+const toolLinks = [
+  { emoji: '🔍', title: 'Differences Checklist', description: 'Interactive checklist with room filtering, change type sorting, and spoiler controls', href: '/differences-checklist/' },
+  { emoji: '🚪', title: 'Door & Window Safety', description: 'Track every entry point, risk level, and safe action for each door and window', href: '/doors-and-windows/' },
+];
+
+const stats = [
+  { label: 'Developer', value: 'MadBug', icon: '👨‍💻' },
+  { label: 'Status', value: 'Demo Available', icon: '🎮' },
+  { label: 'Platform', value: 'Steam + itch.io', icon: '💻' },
+  { label: 'Genre', value: 'Horror + Puzzle', icon: '💿' },
+];
+
+const quickStart = [
+  { step: 1, title: 'Download the Demo', description: 'Get the free demo on Steam or itch.io. It covers the core apartment with spot-the-difference mechanics.' },
+  { step: 2, title: 'Observe Everything', description: 'Walk through every room slowly. Memorize object positions, door states, and window conditions — this is your baseline.' },
+  { step: 3, title: 'Spot the Differences', description: 'Leave and re-enter. Compare against your baseline. Use the Differences Checklist to track what changed.' },
+];
+---
+
+<BaseLayout>
+  <JsonLd schema={[breadcrumbSchema, videoGameSchema, faqSchema]} />
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-red-900/20 via-[#0a0a0f] to-red-950/10">
+    <div class="relative max-w-6xl mx-auto px-4 py-20 sm:py-28 text-center">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
+        <span class="text-red-600">Dread Disc Guide</span>
+      </h1>
+      <p class="text-xl sm:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
+        Spot the differences. Lock every door and window. Survive the apartment.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/demo-walkthrough/"
+          class="inline-flex items-center gap-2 px-8 py-3 bg-red-700 text-white font-bold rounded-lg hover:bg-red-800 transition-colors shadow-lg"
+        >
+          🎮 Demo Walkthrough
+        </a>
+        <a
+          href="/differences-checklist/"
+          class="inline-flex items-center gap-2 px-8 py-3 bg-gray-800 text-white font-bold rounded-lg border border-red-700/50 hover:bg-gray-700 transition-colors"
+        >
+          🔍 Differences Checklist
+        </a>
+      </div>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a
+          href={`https://store.steampowered.com/app/${config.game.steamAppId}/`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-red-400/70 hover:text-red-400 transition-colors text-sm"
+        >
+          ▶ Steam Page
+        </a>
+        <a
+          href={config.game.itchUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-red-400/70 hover:text-red-400 transition-colors text-sm"
+        >
+          ▶ itch.io Page
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guide Links Grid -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-2xl font-bold mb-8 text-center text-gray-200">Guides</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      {guideLinks.map((link) => (
+        <a
+          href={link.href}
+          class="card-hover flex flex-col items-center gap-2 p-5 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/50 transition-all text-center"
+        >
+          <span class="text-3xl">{link.emoji}</span>
+          <span class="font-semibold text-sm text-gray-200">{link.title}</span>
+          <span class="text-xs text-gray-500">{link.description}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Interactive Tools -->
+  <section class="bg-gray-900/50 py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-2 text-center text-gray-200">Interactive Tools</h2>
+      <p class="text-gray-500 text-center mb-8">Use these checklists while playing to track differences and secure your apartment.</p>
+      <div class="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        {toolLinks.map((tool) => (
+          <a
+            href={tool.href}
+            class="card-hover flex flex-col items-center gap-3 p-6 rounded-xl border border-red-700/40 bg-red-900/10 hover:border-red-500/60 transition-all text-center"
+          >
+            <span class="text-4xl">{tool.emoji}</span>
+            <span class="font-bold text-gray-200">{tool.title}</span>
+            <span class="text-sm text-gray-400">{tool.description}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Start -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-2xl font-bold mb-8 text-center text-gray-200">Quick Start</h2>
+    <div class="grid sm:grid-cols-3 gap-6">
+      {quickStart.map(({ step, title, description }) => (
+        <div class="relative bg-gray-800/50 rounded-xl p-6 border border-gray-700/50">
+          <div class="w-10 h-10 rounded-full bg-red-700 text-white flex items-center justify-center font-bold text-lg mb-4">
+            {step}
+          </div>
+          <h3 class="font-bold text-lg mb-2 text-gray-200">{title}</h3>
+          <p class="text-sm text-gray-400">{description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Game Stats -->
+  <section class="bg-gray-900/50 py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-8 text-center text-gray-200">Game Info</h2>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        {stats.map(({ label, value, icon }) => (
+          <div class="text-center p-6 rounded-xl border border-gray-700/50 bg-gray-800/50">
+            <div class="text-3xl mb-2">{icon}</div>
+            <div class="text-xl font-extrabold text-red-400">{value}</div>
+            <div class="text-sm text-gray-500 mt-1">{label}</div>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-gray-400 mt-6 max-w-2xl mx-auto text-sm">{config.game.description}</p>
+      <div class="flex flex-wrap justify-center gap-2 mt-4">
+        {config.game.tags.map((tag) => (
+          <span class="text-xs bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700/50">{tag}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- More Resources -->
+  <section class="bg-gray-900/50 py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-8 text-center text-gray-200">More Dread Disc Resources</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        <a href="/walkthrough/" class="card-hover flex flex-col items-center gap-1 p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-all text-center">
+          <span class="text-2xl">📖</span>
+          <span class="text-xs font-medium text-gray-300">Full Walkthrough</span>
+        </a>
+        <a href="/all-differences/" class="card-hover flex flex-col items-center gap-1 p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-all text-center">
+          <span class="text-2xl">📋</span>
+          <span class="text-xs font-medium text-gray-300">All Differences</span>
+        </a>
+        <a href="/apartment-changes/" class="card-hover flex flex-col items-center gap-1 p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-all text-center">
+          <span class="text-2xl">🏠</span>
+          <span class="text-xs font-medium text-gray-300">Apartment Changes</span>
+        </a>
+        <a href="/download/" class="card-hover flex flex-col items-center gap-1 p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-all text-center">
+          <span class="text-2xl">💿</span>
+          <span class="text-xs font-medium text-gray-300">Download</span>
+        </a>
+        <a href="/release-date/" class="card-hover flex flex-col items-center gap-1 p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-all text-center">
+          <span class="text-2xl">📅</span>
+          <span class="text-xs font-medium text-gray-300">Release Date</span>
+        </a>
+        <a href="/system-requirements/" class="card-hover flex flex-col items-center gap-1 p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-all text-center">
+          <span class="text-2xl">💻</span>
+          <span class="text-xs font-medium text-gray-300">System Requirements</span>
+        </a>
+        <a href="/updates/" class="card-hover flex flex-col items-center gap-1 p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-all text-center">
+          <span class="text-2xl">📝</span>
+          <span class="text-xs font-medium text-gray-300">Updates</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Differences Preview -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-bold text-gray-200">Sample Differences</h2>
+      <a href="/differences-checklist/" class="text-sm text-red-400 hover:text-red-300 transition-colors">
+        View Full Checklist →
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {differences.filter(d => d.spoilerLevel === 'light').slice(0, 6).map((diff) => (
+        <div class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xs font-medium text-gray-400 bg-gray-900 px-2 py-0.5 rounded">{diff.room}</span>
+            <span class="text-xs text-blue-400">{diff.changeType}</span>
+          </div>
+          <p class="text-sm font-medium text-gray-200">{diff.objectName}</p>
+          <p class="text-xs text-gray-500 mt-1">{diff.description}</p>
+        </div>
+      ))}
+    </div>
+    <p class="text-center text-xs text-gray-600 mt-4">
+      Data covers demo content only. Differences may vary by randomized run.
+    </p>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="max-w-3xl mx-auto px-4 py-16">
+    <h2 class="text-2xl font-bold mb-8 text-center text-gray-200">Frequently Asked Questions</h2>
+    <div class="space-y-3">
+      {homeFaqs.map((faq) => (
+        <FAQItem question={faq.question} answer={faq.answer} />
+      ))}
+    </div>
+    <div class="text-center mt-6">
+      <a href="/faq/" class="text-sm text-red-400 hover:text-red-300 transition-colors">
+        View all FAQ →
+      </a>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="max-w-6xl mx-auto px-4 py-16 text-center">
+    <h2 class="text-2xl font-bold mb-4 text-gray-200">Ready to Enter the Apartment?</h2>
+    <p class="text-gray-500 mb-8 max-w-lg mx-auto">
+      Start with the demo walkthrough, use the differences checklist while playing, and keep every door locked.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href="/demo-walkthrough/"
+        class="px-6 py-3 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800 transition-colors"
+      >
+        🎮 Start the Demo Walkthrough
+      </a>
+      <a
+        href="/differences-checklist/"
+        class="px-6 py-3 border border-red-700/50 text-red-400 font-semibold rounded-lg hover:bg-red-900/20 transition-colors"
+      >
+        🔍 Open Differences Checklist
+      </a>
+    </div>
+    <p class="text-xs text-gray-600 mt-8">
+      Fan-made guide &middot; Updated {currentDate} &middot; Not affiliated with {config.game.developer}
+    </p>
+  </section>
+</BaseLayout>

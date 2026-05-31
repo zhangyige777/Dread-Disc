@@ -1,0 +1,185 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, generateBreadcrumbSchema } from '@/lib/data';
+import JsonLd from '@/components/JsonLd.astro';
+
+const config = getGameConfig();
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'About', url: '/about/' },
+]);
+---
+
+<BaseLayout title="About - Dread Disc Guide" description="About the Dread Disc Guide fan site. Data sources, disclaimer, and site information.">
+  <JsonLd schema={breadcrumbSchema} />
+
+  <section class="max-w-3xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-red-400 transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-300">About</span>
+    </nav>
+
+    <h1 class="text-3xl font-extrabold mb-6 text-gray-100">About This Site</h1>
+
+    <div class="space-y-6 text-gray-400 text-sm leading-relaxed">
+      <!-- Fan Disclaimer -->
+      <div class="bg-red-900/20 border border-red-800/40 rounded-xl p-5">
+        <h2 class="font-bold text-red-400 mb-2 text-base">Fan-Made Unofficial Guide</h2>
+        <p>
+          <strong class="text-gray-200">Dread Disc Guide</strong> is an independent, fan-created companion site for the game
+          Dread Disc by MadBug. This site is <strong class="text-gray-200">not</strong> affiliated with, endorsed by, sponsored by,
+          or officially connected to MadBug, Steam, Valve Corporation, itch.io, or any game publisher or distributor.
+        </p>
+        <p class="mt-3">
+          All game content, assets, names, and trademarks related to Dread Disc are the property of their respective owners.
+          This guide exists solely to help players navigate the game and is provided free of charge.
+        </p>
+      </div>
+
+      <!-- What We Provide -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">What This Site Provides</h2>
+        <p class="mb-3">
+          Our goal is to be the most complete and accurate community reference for Dread Disc. We offer the following tools and content:
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span><strong class="text-gray-200">Demo Walkthrough</strong> — A step-by-step walkthrough with both spoiler-light hints and full spoiler modes, so you can choose how much help you want.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span><strong class="text-gray-200">Interactive Differences Checklist</strong> — Track and filter every detected change in the game environment by room and change-type, with progress saved to your browser.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span><strong class="text-gray-200">Door &amp; Window Safety Checklist</strong> — A dedicated tool for tracking which entry points have been checked and secured during gameplay.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span><strong class="text-gray-200">Survival Tips &amp; Failure Prevention</strong> — Curated advice on common mistakes, failure triggers, and strategies to survive longer in Dread Disc.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span><strong class="text-gray-200">FAQ</strong> — Answers to frequently asked questions from the community, covering gameplay mechanics, controls, and common confusion points.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span><strong class="text-gray-200">Release Date Tracking</strong> — Up-to-date information on demo availability, full game release timeline, and version history.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Data Sources -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">Data Sources</h2>
+        <p class="mb-3">All game data on this site is sourced from the following official and community channels:</p>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>
+              <strong class="text-gray-200">Steam Store Page</strong>
+              (<a href="https://store.steampowered.com/app/4156540/Dread_Disc/" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300">store.steampowered.com</a>) — Official game description, screenshots, system requirements, update notes, and community discussions.
+            </span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>
+              <strong class="text-gray-200">itch.io Page</strong>
+              (<a href="https://madbug.itch.io/dread-disc" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300">madbug.itch.io/dread-disc</a>) — Developer blog posts, demo downloads, devlogs, and community comments.
+            </span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>
+              <strong class="text-gray-200">Reddit</strong> — Community discussions, player reports, and shared experiences from r/indiegames and related subreddits.
+            </span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>
+              <strong class="text-gray-200">SteamDB</strong> — Historical data on player counts, version changes, and store page updates.
+            </span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>
+              <strong class="text-gray-200">In-Game Observation</strong> — First-hand playthrough and documentation of demo content by our team.
+            </span>
+          </li>
+        </ul>
+        <p class="mt-3 text-gray-500">
+          We do not fabricate or invent game content. All data is based on what is publicly available or directly observed in the game.
+        </p>
+      </div>
+
+      <!-- Update Frequency -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">Update Frequency</h2>
+        <p>We check Steam and itch.io weekly for updates. Data is refreshed when new demo versions or full game content is released. Our update process includes:</p>
+        <ul class="mt-2 space-y-2">
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>Monitoring the Steam store page and itch.io devlog for patch notes and announcements</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>Replaying updated demo builds to verify and document changes</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>Reviewing community feedback on Reddit and Steam forums for reported discrepancies</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 mt-0.5 shrink-0">&#9656;</span>
+            <span>Updating checklists and walkthrough sections to reflect the latest version</span>
+          </li>
+        </ul>
+        <p class="mt-2 text-xs text-gray-600">Last data refresh: {config.game.lastUpdated}</p>
+      </div>
+
+      <!-- Content Verification Policy -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">Content Verification Policy</h2>
+        <p class="mb-3">
+          Because Dread Disc includes randomized elements and the game is still in development, we tag every piece of content with one of three verification statuses:
+        </p>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3">
+            <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-green-900/40 text-green-400 border border-green-800/50 shrink-0 mt-0.5">Verified in demo</span>
+            <span>Confirmed through direct observation in the currently available demo version. This data is reliable but may change in future updates.</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-yellow-900/40 text-yellow-400 border border-yellow-800/50 shrink-0 mt-0.5">Unconfirmed</span>
+            <span>Reported by community members or inferred from developer statements but not yet verified by our team through direct gameplay.</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-orange-900/40 text-orange-400 border border-orange-800/50 shrink-0 mt-0.5">May vary</span>
+            <span>Content that differs between playthroughs due to procedural generation, randomization, or branching paths. Your experience may not match exactly.</span>
+          </div>
+        </div>
+        <p class="mt-3 text-gray-500">
+          We do not speculate on full-game content that has not been publicly shown or released. All unverified claims are clearly marked.
+        </p>
+      </div>
+
+      <!-- Corrections & Contact -->
+      <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+        <h2 class="font-bold text-gray-200 mb-3 text-base">Found an Error?</h2>
+        <p>
+          If you find inaccurate, outdated, or missing information on this site, we want to hear about it. Visit our
+          <a href="/contact/" class="text-red-400 hover:text-red-300">contact page</a> to submit a correction or suggestion.
+          We review all feedback and aim to resolve verified errors within 48 hours.
+        </p>
+      </div>
+
+      <!-- Footer Disclaimer -->
+      <p class="text-xs text-gray-600 pt-4 border-t border-gray-800">
+        This site is not affiliated with MadBug, Steam, Valve, or itch.io. Dread Disc and all related content are the property of MadBug.
+        All guide text, checklist tools, and site design are original work by the Dread Disc Guide team.
+        Last updated: {config.game.lastUpdated}.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

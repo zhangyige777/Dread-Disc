@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import {
+  getGameConfig,
+  generateBreadcrumbSchema,
+} from '@/lib/data';
+
+const config = getGameConfig();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Updates', url: '/updates/' },
+]);
+---
+
+<BaseLayout
+  title="Dread Disc Updates - Patch Notes & Demo Changes"
+  description="Dread Disc update log. Track demo changes, Steam updates, itch.io versions, and patch notes for Dread Disc by MadBug."
+>
+  <JsonLd schema={breadcrumbSchema} />
+
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-red-400 transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-300">Updates</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-100">
+      Dread Disc Updates
+    </h1>
+
+    <p class="text-gray-400 mb-8 leading-relaxed">
+      Update log for Dread Disc. This page tracks demo changes, Steam updates, and itch.io version releases.
+    </p>
+
+    <!-- Current Status -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 mb-8">
+      <h2 class="text-lg font-bold text-gray-200 mb-3">Current Status</h2>
+      <div class="space-y-2 text-sm">
+        <div class="flex justify-between items-center py-2 border-b border-gray-700/30">
+          <span class="text-gray-400">Game Version</span>
+          <span class="text-gray-200">{config.game.currentVersion}</span>
+        </div>
+        <div class="flex justify-between items-center py-2 border-b border-gray-700/30">
+          <span class="text-gray-400">Release Status</span>
+          <span class="text-yellow-400">{config.game.releaseDate}</span>
+        </div>
+        <div class="flex justify-between items-center py-2">
+          <span class="text-gray-400">Last Checked</span>
+          <span class="text-gray-200">{config.game.lastUpdated}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Log -->
+    <div class="mb-12">
+      <h2 class="text-xl font-bold mb-4 text-gray-200">Update History</h2>
+      <div class="space-y-4">
+        <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-3 h-3 rounded-full bg-green-500"></span>
+            <span class="font-bold text-gray-200">Demo Release</span>
+            <span class="text-xs text-gray-500 ml-auto">2026</span>
+          </div>
+          <p class="text-sm text-gray-400">
+            Demo launched on Steam and itch.io. Includes the core apartment with spot-the-difference mechanics, door/window security, and observation cycles.
+          </p>
+        </div>
+        <div class="bg-gray-800/30 border border-gray-700/30 rounded-xl p-5">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-3 h-3 rounded-full bg-gray-600"></span>
+            <span class="font-medium text-gray-400">Full Release</span>
+            <span class="text-xs text-gray-500 ml-auto">TBA</span>
+          </div>
+          <p class="text-sm text-gray-500">
+            Full game release date has not been announced. This page will be updated with patch notes when new versions are released.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Where to Check -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5">
+      <h2 class="text-lg font-bold text-gray-200 mb-3">Official Update Sources</h2>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={`https://store.steampowered.com/app/${config.game.steamAppId}/`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-sm text-gray-300 hover:border-red-700/50 transition-colors"
+        >
+          ▶ Steam News
+        </a>
+        <a
+          href={config.game.itchUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-sm text-gray-300 hover:border-red-700/50 transition-colors"
+        >
+          ▶ itch.io Devlog
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

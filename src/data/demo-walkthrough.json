@@ -1,0 +1,52 @@
+{
+  "walkthrough": [
+    {
+      "id": "step-1-intro",
+      "stage": 1,
+      "title": "Apartment Entry — Establish Baseline",
+      "spoilerLight": "Enter the apartment and walk through every room slowly. Your only goal right now is to memorize where everything is. Open every door, look at every window, check every object position. This is your baseline — you will need to compare against it later.",
+      "fullSpoiler": "When you first enter, the apartment is completely normal. Walk through every room: entrance hall, living room, kitchen, hallway, bedroom, and bathroom. Open every door and window to confirm their default state. Note the exact position of all objects — paintings, cushions, pillows, mats, knives, curtains. Pay special attention to the front door (closed), balcony door (locked), and all windows. This baseline will be your reference for spotting differences.",
+      "tips": "Take your time. The game does not punish slow observation at this stage. Some players find it helpful to do a second pass."
+    },
+    {
+      "id": "step-2-first-check",
+      "stage": 2,
+      "title": "First Observation Cycle",
+      "spoilerLight": "Leave the apartment and re-enter. Now compare everything to your baseline. Look for things that have moved, disappeared, or appeared new. Check all doors and windows — are they still in the state you left them?",
+      "fullSpoiler": "After exiting and re-entering, 1–3 differences will have appeared. Common first-cycle changes include: a drawer opening in the kitchen, a cushion shifting on the sofa, or a curtain moving in the bedroom. Check every door and window — the front door and balcony door are highest priority. Spot all differences before proceeding.",
+      "tips": "Start from the entrance and work through rooms systematically. Don't skip doors or windows."
+    },
+    {
+      "id": "step-3-doors-windows",
+      "stage": 3,
+      "title": "Lock Down — Secure All Entry Points",
+      "spoilerLight": "Once you've spotted the differences, your next priority is securing every door and window. Close and lock anything that's open. The game's core mechanic is 'lock every door and window before it gets in.'",
+      "fullSpoiler": "After identifying differences, immediately check and secure all doors and windows. The front door should be closed and locked, the balcony door verified as locked, bedroom window closed, kitchen window latched. Any entry point left unsecured increases risk for the next cycle. The game tracks your diligence — missing a single window can trigger failure.",
+      "tips": "Use the Door & Window Safety Checklist on this site to track which ones you've secured."
+    },
+    {
+      "id": "step-4-repeat",
+      "stage": 4,
+      "title": "Repeat Observation Cycles",
+      "spoilerLight": "Continue the cycle: leave, re-enter, spot differences, secure doors and windows. Each cycle introduces new changes and may increase in difficulty. Stay focused and methodical.",
+      "fullSpoiler": "Each subsequent cycle adds more differences and introduces higher-risk changes. Early cycles might have 1–3 changes; later cycles can have 4–6+. You may encounter: new objects appearing, existing objects moving or disappearing, doors/windows changing state, lighting changes, and reflection anomalies. The randomized elements mean no two runs are identical — some changes are guaranteed, others vary.",
+      "tips": "Don't rush. Missing a difference is worse than taking extra time. Use the checklist to stay organized."
+    },
+    {
+      "id": "step-5-escalation",
+      "stage": 5,
+      "title": "Escalation Phase",
+      "spoilerLight": "As cycles continue, the changes become more dramatic and the threat increases. You may notice environmental changes that go beyond simple object movement. Stay alert and keep securing all entry points.",
+      "fullSpoiler": "Later cycles introduce escalation events: doors that were locked may become unlocked, new doors may appear, reflections may show things that aren't there, and the apartment layout may subtly shift. The front door and balcony door become critical — if either is breached, the run may end. Some differences now involve damage (cracked lights, broken objects) rather than just movement.",
+      "tips": "At this point, checking doors and windows is more important than spotting every difference."
+    },
+    {
+      "id": "step-6-demo-end",
+      "stage": 6,
+      "title": "Demo Conclusion",
+      "spoilerLight": "The demo ends after a set number of cycles or when specific conditions are met. The ending you get depends on how well you maintained security and spotted differences.",
+      "fullSpoiler": "The demo concludes after surviving enough observation cycles while maintaining door/window security. Your ending depends on how many differences you correctly identified and whether you kept all entry points secured. Some endings require specific sequences of actions or spotting certain hidden differences. The demo ending sets up the full game's narrative.",
+      "tips": "The demo has multiple possible outcomes. Try a second run making different choices to see alternative content."
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FAQItem from '@/components/FAQItem.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import {
+  getGameConfig,
+  getFaqs,
+  generateBreadcrumbSchema,
+  generateFAQSchema,
+} from '@/lib/data';
+
+const config = getGameConfig();
+const faqs = getFaqs();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'FAQ', url: '/faq/' },
+]);
+const faqSchema = generateFAQSchema(faqs);
+---
+
+<BaseLayout
+  title="Dread Disc FAQ - Frequently Asked Questions"
+  description="Dread Disc FAQ covering Steam, itch.io, demo length, release date, price, endings, and randomized differences."
+>
+  <JsonLd schema={[breadcrumbSchema, faqSchema]} />
+
+  <section class="max-w-3xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-red-400 transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-300">FAQ</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-100">
+      Dread Disc FAQ
+    </h1>
+
+    <p class="text-gray-400 mb-8 leading-relaxed">
+      Common questions about Dread Disc, answered. Last updated: {config.game.lastUpdated}.
+    </p>
+
+    <div class="space-y-3 mb-12">
+      {faqs.map((faq) => (
+        <FAQItem question={faq.question} answer={faq.answer} />
+      ))}
+    </div>
+
+    <!-- Quick Links -->
+    <div class="mb-8">
+      <h2 class="text-xl font-bold mb-4 text-gray-200">Still Have Questions?</h2>
+      <p class="text-sm text-gray-400 mb-4">
+        Check these pages for more detailed information:
+      </p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <a href="/download/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="font-semibold text-sm text-gray-200">💿 Download Info</span>
+          <p class="text-xs text-gray-500 mt-1">Steam & itch.io links</p>
+        </a>
+        <a href="/release-date/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="font-semibold text-sm text-gray-200">📅 Release Date</span>
+          <p class="text-xs text-gray-500 mt-1">Status & timeline</p>
+        </a>
+        <a href="/system-requirements/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="font-semibold text-sm text-gray-200">💻 System Requirements</span>
+          <p class="text-xs text-gray-500 mt-1">PC specs needed</p>
+        </a>
+        <a href="/demo-walkthrough/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors">
+          <span class="font-semibold text-sm text-gray-200">🎮 Demo Walkthrough</span>
+          <p class="text-xs text-gray-500 mt-1">Step-by-step guide</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,99 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import {
+  getGameConfig,
+  getDifferences,
+  generateBreadcrumbSchema,
+} from '@/lib/data';
+
+const config = getGameConfig();
+const differences = getDifferences();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Apartment Changes', url: '/apartment-changes/' },
+]);
+
+// Group by change type
+const changeTypes = ['moved', 'missing', 'opened', 'damaged', 'new'] as const;
+const typeEmoji: Record<string, string> = { moved: '↔️', missing: '❌', opened: '📂', damaged: '💥', 'new': '✨' };
+const typeLabel: Record<string, string> = { moved: 'Moved Objects', missing: 'Missing Items', opened: 'Opened / Closed Changes', damaged: 'Damaged Items', 'new': 'New Objects' };
+const typeColor: Record<string, string> = { moved: 'text-blue-400', missing: 'text-red-400', opened: 'text-yellow-400', damaged: 'text-orange-400', 'new': 'text-purple-400' };
+---
+
+<BaseLayout
+  title="Dread Disc Apartment Changes Guide"
+  description="Complete catalog of apartment changes in Dread Disc organized by type: new doors, moved objects, missing items, damaged items, and opened changes."
+>
+  <JsonLd schema={breadcrumbSchema} />
+
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-red-400 transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-300">Apartment Changes</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-100">
+      Dread Disc Apartment Changes
+    </h1>
+
+    <p class="text-gray-400 mb-6 leading-relaxed">
+      All known apartment changes in Dread Disc, organized by type of change.
+      Each category shows what kind of transformations the apartment undergoes between observation cycles.
+    </p>
+
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mb-8">
+      <p class="text-xs text-gray-400">
+        ⚠️ Data covers demo content only. Changes may vary by randomized run. Last updated: {config.game.lastUpdated}.
+      </p>
+    </div>
+
+    {/* Changes by Type */}
+    <div class="space-y-8 mb-12">
+      {changeTypes.map(ct => {
+        const items = differences.filter(d => d.changeType === ct);
+        if (items.length === 0) return null;
+        return (
+          <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-2xl">{typeEmoji[ct]}</span>
+              <div>
+                <h2 class={`text-lg font-bold ${typeColor[ct]}`}>{typeLabel[ct]}</h2>
+                <p class="text-xs text-gray-500">{items.length} known changes</p>
+              </div>
+            </div>
+            <div class="space-y-3">
+              {items.map(item => (
+                <div class="bg-gray-900/40 rounded-lg p-3">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="text-xs bg-gray-800 px-2 py-0.5 rounded text-gray-400">{item.room}</span>
+                    <span class="text-sm font-medium text-gray-200">{item.objectName}</span>
+                  </div>
+                  <p class="text-xs text-gray-500">{item.description}</p>
+                  {item.notes && <p class="text-xs text-gray-600 mt-1 italic">{item.notes}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-4">
+      <a href="/differences-checklist/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors text-center">
+        <span class="text-2xl block mb-2">🔍</span>
+        <span class="font-semibold text-sm text-gray-200">Differences Checklist</span>
+      </a>
+      <a href="/all-differences/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors text-center">
+        <span class="text-2xl block mb-2">📋</span>
+        <span class="font-semibold text-sm text-gray-200">All Differences</span>
+      </a>
+      <a href="/demo-walkthrough/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors text-center">
+        <span class="text-2xl block mb-2">🎮</span>
+        <span class="font-semibold text-sm text-gray-200">Demo Walkthrough</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

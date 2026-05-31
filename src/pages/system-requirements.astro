@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import {
+  getGameConfig,
+  generateBreadcrumbSchema,
+} from '@/lib/data';
+
+const config = getGameConfig();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'System Requirements', url: '/system-requirements/' },
+]);
+---
+
+<BaseLayout
+  title="Dread Disc System Requirements - PC Specs Needed"
+  description="Dread Disc system requirements for PC. Minimum and recommended specs for running the Steam demo and full game."
+>
+  <JsonLd schema={breadcrumbSchema} />
+
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-red-400 transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-300">System Requirements</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-100">
+      Dread Disc System Requirements
+    </h1>
+
+    <p class="text-gray-400 mb-6 leading-relaxed">
+      PC system requirements for Dread Disc. These will be updated when official specs are confirmed on Steam.
+    </p>
+
+    <!-- Notice -->
+    <div class="bg-amber-900/20 border border-amber-700/40 rounded-xl p-4 mb-8">
+      <p class="text-sm text-amber-300">
+        ⚠️ Official system requirements have not been published yet. The information below is based on the demo and similar indie horror games. Will be updated when confirmed.
+      </p>
+    </div>
+
+    <!-- Minimum -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-200 mb-4">Minimum Requirements (Estimated)</h2>
+      <div class="space-y-3 text-sm">
+        <div class="flex justify-between items-center py-2 border-b border-gray-700/30">
+          <span class="text-gray-400">OS</span>
+          <span class="text-gray-200">Windows 10 (Estimated)</span>
+        </div>
+        <div class="flex justify-between items-center py-2 border-b border-gray-700/30">
+          <span class="text-gray-400">Processor</span>
+          <span class="text-gray-200">Intel Core i5 or equivalent (Estimated)</span>
+        </div>
+        <div class="flex justify-between items-center py-2 border-b border-gray-700/30">
+          <span class="text-gray-400">Memory</span>
+          <span class="text-gray-200">8 GB RAM (Estimated)</span>
+        </div>
+        <div class="flex justify-between items-center py-2 border-b border-gray-700/30">
+          <span class="text-gray-400">Graphics</span>
+          <span class="text-gray-200">DirectX 11 compatible GPU (Estimated)</span>
+        </div>
+        <div class="flex justify-between items-center py-2 border-b border-gray-700/30">
+          <span class="text-gray-400">Storage</span>
+          <span class="text-gray-200">TBA (Not confirmed)</span>
+        </div>
+        <div class="flex justify-between items-center py-2">
+          <span class="text-gray-400">DirectX</span>
+          <span class="text-gray-200">Version 11 (Estimated)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Platform Info -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5 mb-8">
+      <h2 class="text-lg font-bold text-gray-200 mb-3">Platform</h2>
+      <p class="text-sm text-gray-400">
+        Dread Disc is currently available on Windows PC via Steam and itch.io. Additional platform support has not been confirmed.
+      </p>
+    </div>
+
+    <div class="text-center mb-8">
+      <a
+        href={`https://store.steampowered.com/app/${config.game.steamAppId}/`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-red-400 hover:text-red-300 transition-colors"
+      >
+        Check Steam page for official requirements →
+      </a>
+    </div>
+
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mb-8">
+      <p class="text-xs text-gray-400">
+        <strong>Source:</strong> Estimated based on demo performance · <strong>Last checked:</strong> {config.game.lastUpdated} · Official requirements not yet published on Steam · Not confirmed by developer
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,120 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import {
+  getGameConfig,
+  generateBreadcrumbSchema,
+} from '@/lib/data';
+
+const config = getGameConfig();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Release Date', url: '/release-date/' },
+]);
+---
+
+<BaseLayout
+  title="Dread Disc Release Date - When Does Dread Disc Come Out?"
+  description="Dread Disc release date info. Currently listed as Coming Soon on Steam. Demo available now on Steam and itch.io. Release timeline and status updates."
+>
+  <JsonLd schema={breadcrumbSchema} />
+
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-red-400 transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-300">Release Date</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-100">
+      Dread Disc Release Date
+    </h1>
+
+    <p class="text-gray-400 mb-8 leading-relaxed">
+      Current release status and timeline for Dread Disc by MadBug.
+    </p>
+
+    <!-- Status Card -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 mb-8">
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div>
+          <span class="text-xs text-gray-500 uppercase tracking-wide">Full Game Status</span>
+          <p class="text-2xl font-extrabold text-red-400 mt-1">Coming Soon</p>
+          <p class="text-sm text-gray-400 mt-2">No official release date has been announced.</p>
+        </div>
+        <div>
+          <span class="text-xs text-gray-500 uppercase tracking-wide">Demo Status</span>
+          <p class="text-2xl font-extrabold text-green-400 mt-1">Available Now</p>
+          <p class="text-sm text-gray-400 mt-2">Free demo on Steam and itch.io.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="mb-12">
+      <h2 class="text-xl font-bold mb-4 text-gray-200">Timeline</h2>
+      <div class="space-y-4">
+        <div class="flex gap-4 items-start">
+          <div class="w-3 h-3 rounded-full bg-green-500 mt-1.5 shrink-0"></div>
+          <div>
+            <p class="text-sm font-medium text-gray-200">Demo Released</p>
+            <p class="text-xs text-gray-500">Free demo available on Steam and itch.io. Covers core spot-the-difference mechanics.</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start">
+          <div class="w-3 h-3 rounded-full bg-yellow-500 mt-1.5 shrink-0"></div>
+          <div>
+            <p class="text-sm font-medium text-gray-200">Coming Soon on Steam</p>
+            <p class="text-xs text-gray-500">Steam page active. Wishlist available. Full game release date TBA.</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start">
+          <div class="w-3 h-3 rounded-full bg-gray-600 mt-1.5 shrink-0"></div>
+          <div>
+            <p class="text-sm font-medium text-gray-400">Full Release</p>
+            <p class="text-xs text-gray-500">Date to be announced. This page will be updated when official information is available.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Where to Follow -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5 mb-8">
+      <h2 class="text-lg font-bold text-gray-200 mb-3">Stay Updated</h2>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={`https://store.steampowered.com/app/${config.game.steamAppId}/`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-sm text-gray-300 hover:border-red-700/50 transition-colors"
+        >
+          ▶ Steam Wishlist
+        </a>
+        <a
+          href={config.game.itchUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-sm text-gray-300 hover:border-red-700/50 transition-colors"
+        >
+          ▶ itch.io Follow
+        </a>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-4">
+      <a href="/download/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors text-center">
+        <span class="text-2xl block mb-2">💿</span>
+        <span class="font-semibold text-sm text-gray-200">Download Demo</span>
+      </a>
+      <a href="/updates/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors text-center">
+        <span class="text-2xl block mb-2">📝</span>
+        <span class="font-semibold text-sm text-gray-200">Updates</span>
+      </a>
+      <a href="/faq/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors text-center">
+        <span class="text-2xl block mb-2">❓</span>
+        <span class="font-semibold text-sm text-gray-200">FAQ</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,143 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import {
+  getGameConfig,
+  generateBreadcrumbSchema,
+} from '@/lib/data';
+
+const config = getGameConfig();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Download', url: '/download/' },
+]);
+---
+
+<BaseLayout
+  title="Download Dread Disc - Steam Demo & itch.io Demo"
+  description="Download the Dread Disc demo for free on Steam or itch.io. Links to the official pages, system requirements, and platform availability."
+>
+  <JsonLd schema={breadcrumbSchema} />
+
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <nav class="text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-red-400 transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-300">Download</span>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-100">
+      Download Dread Disc
+    </h1>
+
+    <p class="text-gray-400 mb-8 leading-relaxed">
+      Looking to download Dread Disc? The Dread Disc download is available as a free demo on both Steam and itch.io. Get the Dread Disc Steam demo or the Dread Disc itch demo below — the full game is listed as Coming Soon on Steam.
+    </p>
+
+    <!-- Steam Card -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 mb-6">
+      <div class="flex items-start gap-4">
+        <div class="w-16 h-16 bg-gray-900 rounded-xl flex items-center justify-center text-3xl shrink-0">🎮</div>
+        <div class="flex-1">
+          <h2 class="text-xl font-bold text-gray-200 mb-1">Steam</h2>
+          <p class="text-sm text-gray-400 mb-3">
+            Free demo available. Full game listed as Coming Soon.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="text-xs bg-green-900/30 text-green-400 px-2 py-1 rounded">Demo Available</span>
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Windows PC</span>
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Free Demo</span>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a
+              href={`https://store.steampowered.com/app/${config.game.steamAppId}/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 bg-red-700 text-white text-sm font-semibold rounded-lg hover:bg-red-800 transition-colors"
+            >
+              ▶ Steam Store Page
+            </a>
+            <a
+              href={`https://store.steampowered.com/app/${config.game.demoAppId}/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 text-gray-300 text-sm font-semibold rounded-lg border border-gray-700 hover:border-red-700/50 transition-colors"
+            >
+              ⬇ Download Demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- itch.io Card -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 mb-8">
+      <div class="flex items-start gap-4">
+        <div class="w-16 h-16 bg-gray-900 rounded-xl flex items-center justify-center text-3xl shrink-0">🕹️</div>
+        <div class="flex-1">
+          <h2 class="text-xl font-bold text-gray-200 mb-1">itch.io</h2>
+          <p class="text-sm text-gray-400 mb-3">
+            Free demo available directly in browser or as a download.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="text-xs bg-green-900/30 text-green-400 px-2 py-1 rounded">Demo Available</span>
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Windows PC</span>
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Free</span>
+          </div>
+          <a
+            href={config.game.itchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-red-700 text-white text-sm font-semibold rounded-lg hover:bg-red-800 transition-colors"
+          >
+            ▶ Play on itch.io
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price Info -->
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5 mb-8">
+      <h2 class="text-lg font-bold text-gray-200 mb-2">Pricing</h2>
+      <div class="space-y-2 text-sm">
+        <div class="flex justify-between items-center py-1 border-b border-gray-700/30">
+          <span class="text-gray-400">Demo</span>
+          <span class="text-green-400 font-bold">Free</span>
+        </div>
+        <div class="flex justify-between items-center py-1">
+          <span class="text-gray-400">Full Game</span>
+          <span class="text-gray-400">TBA (Coming Soon)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Requirements Link -->
+    <div class="text-center mb-8">
+      <a href="/system-requirements/" class="text-sm text-red-400 hover:text-red-300 transition-colors">
+        View System Requirements →
+      </a>
+    </div>
+
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mb-8">
+      <p class="text-xs text-gray-400">
+        <strong>Source:</strong> Steam, itch.io · <strong>Last checked:</strong> {config.game.lastUpdated} · Demo available on both platforms · Full game status: Coming Soon
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-4">
+      <a href="/demo-walkthrough/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors text-center">
+        <span class="text-2xl block mb-2">🎮</span>
+        <span class="font-semibold text-sm text-gray-200">Demo Walkthrough</span>
+      </a>
+      <a href="/faq/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors text-center">
+        <span class="text-2xl block mb-2">❓</span>
+        <span class="font-semibold text-sm text-gray-200">FAQ</span>
+      </a>
+      <a href="/release-date/" class="p-4 rounded-xl border border-gray-700/50 bg-gray-800/50 hover:border-red-700/40 transition-colors text-center">
+        <span class="text-2xl block mb-2">📅</span>
+        <span class="font-semibold text-sm text-gray-200">Release Date</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
