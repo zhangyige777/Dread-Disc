@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dreaddiscguide.online/sitemap-index.xml
+Sitemap: https://dread-disc.pages.dev/sitemap-index.xml

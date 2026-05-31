@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://dreaddiscguide.online',
+  site: 'https://dread-disc.pages.dev',
   trailingSlash: 'always',
   integrations: [react(), sitemap()],
   output: 'static',
